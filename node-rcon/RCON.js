@@ -9,7 +9,7 @@ module.exports = class RCON {
   /**
    * @param {Number} [timeout=3000] Timeout for connections and responses
    */
-  constructor (timeout = 3000) {
+  constructor (timeout = 30000) {
     this.timeout = timeout;
     this.online = false;
     this.authenticated = false;
