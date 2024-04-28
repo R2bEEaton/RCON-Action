@@ -27,7 +27,7 @@ async function run() {
 		await srvr.connect(inputs.server, inputs.port, inputs.password)
 		console.log("🟢 Connected and authenticated.");
 
-		if (inputs.sendPushInfo) {
+		if (inputs.sendPushInfo === 'true') {
 			await srvr.send(`tellraw ${inputs.pushInfoRecipient} [{"text":"[GitHub] New push from ","color":"gold"},{"text":"${github.context.payload.sender.login}","color":"yellow"},{"text":" detected."}]`)
 		}
 		if (inputs.commands.length > 0) {
