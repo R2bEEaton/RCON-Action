@@ -15,7 +15,6 @@ async function run() {
 			port: core.getInput("port"),
 			password: core.getInput("password"),
 			commands: JSON.parse(core.getInput("commands")),
-			sendPushInfo: core.getInput("send-push-info"),
 			pushInfoRecipient: core.getInput("push-info-recipient"),
 		}
 		const payload = JSON.stringify(github.context.payload, undefined, 2);
@@ -27,9 +26,6 @@ async function run() {
 		await srvr.connect(inputs.server, inputs.port, inputs.password)
 		console.log("🟢 Connected and authenticated.");
 
-		if (inputs.sendPushInfo === 'true') {
-			await srvr.send(`tellraw ${inputs.pushInfoRecipient} [{"text":"[GitHub] New push from ","color":"gold"},{"text":"${github.context.payload.sender.login}","color":"yellow"},{"text":" detected."}]`)
-		}
 		if (inputs.commands.length > 0) {
 			for (let command of inputs.commands) {
 				await srvr.send(command);
